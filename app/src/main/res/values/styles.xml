@@ -6,6 +6,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="android:windowContentTransitions">true</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowSharedElementEnterTransition">@transition/transition_image</item>
+        <item name="android:windowSharedElementExitTransition">@transition/transition_image</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 

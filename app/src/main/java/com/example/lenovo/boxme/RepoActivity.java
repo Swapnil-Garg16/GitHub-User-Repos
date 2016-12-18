@@ -1,5 +1,6 @@
             package com.example.lenovo.boxme;
 
+            import android.app.ActivityOptions;
             import android.app.ProgressDialog;
             import android.content.Intent;
             import android.graphics.PorterDuff;
@@ -7,7 +8,9 @@
             import android.os.Bundle;
             import android.support.design.widget.FloatingActionButton;
             import android.support.design.widget.Snackbar;
+            import android.support.v4.app.ActivityOptionsCompat;
             import android.support.v4.content.ContextCompat;
+            import android.support.v4.view.ViewCompat;
             import android.support.v7.app.AppCompatActivity;
             import android.support.v7.widget.DefaultItemAnimator;
             import android.support.v7.widget.LinearLayoutManager;
@@ -27,15 +30,16 @@
             import org.json.JSONException;
             import org.json.JSONObject;
 
+            import java.io.Serializable;
             import java.util.ArrayList;
             import java.util.List;
 
-            public class RepoActivity extends AppCompatActivity {
+            public class RepoActivity extends AppCompatActivity implements Serializable {
 
                 private static final String TAG = MainActivity.class.getSimpleName();
                 private ProgressDialog pDialog;
                 private List<RepoList> repoList = new ArrayList<>();
-                String data = "";
+               public static String id,fork,star,watch,imageUrl,data;
                 String str;
                 private static String url;
                 private RepoAdapter adapter;
@@ -69,18 +73,30 @@
                     RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
                     recyclerView.setLayoutManager(mLayoutManager);
                     recyclerView.setItemAnimator(new DefaultItemAnimator());
-
+                    final View androidRobotView = findViewById(R.id.circle_transit);
 
                     recyclerView.setAdapter(adapter);
                     recyclerView.addOnItemTouchListener(
                             new RecyclerTouchListener(this, recyclerView ,new RecyclerTouchListener.OnItemClickListener() {
                                 @Override public void onItemClick(View view, int position) {
 
+                                    View transitionView = view.findViewById(R.id.circle);
+                                    ViewCompat.setTransitionName(transitionView,"MYTRANSITIONVIEW" );
                                     Intent i = new Intent(RepoActivity.this,RepoDetailsActivity.class);
                                     RepoList r = repoList.get(position);
-                                    i.putExtra("reponame",r.getRepoName());
-                                    i.putExtra("repodesc",desc);
-                                    startActivity(i);
+
+                                    Log.d("id",id);
+                                    data = "Repo Name:" + r.getRepoName() + "Repo Desc:" + r.getRepoDesc()
+                                            + "iamgeUrl:" + imageUrl + "id:" + id + "star:" + star + "fork:" + fork + "watch:" + watch;
+                                    RepoDesc rep = new RepoDesc(fork, id, imageUrl, r.getRepoDesc(),  r.getRepoName(), star, watch);
+                                    i.putExtra("data",rep);
+                                    Bundle bundle = null;
+
+                                    ActivityOptions options = ActivityOptions
+                                            .makeSceneTransitionAnimation(RepoActivity.this, transitionView, "MYTRANSITIONVIEW");
+                                    // start the new activity
+                                    startActivity(i, options.toBundle());
+
 
                                 }
 
@@ -99,6 +115,7 @@
                     pDialog = new ProgressDialog(this);
                     // Showing progress dialog
                     pDialog.setMessage("Loading...");
+                    pDialog.setCancelable(false);
                     pDialog.show();
 
                     // Creating volley request obj
@@ -131,6 +148,15 @@
                                             else
                                             repo.setRepoDesc(desc);
                                             Log.d("zxcv",obj.getString("description") );
+
+                                            fork=obj.getString("forks_count");
+                                            watch=obj.getString("watchers_count");
+                                            star=obj.getString("stargazers_count");
+
+                                            JSONObject obj1 = obj.getJSONObject("owner");
+                                            imageUrl = obj1.getString("avatar_url");
+                                            id=obj1.getString("id");
+
 
                                             repoList.add(repo);
                                         } catch (JSONException e) {

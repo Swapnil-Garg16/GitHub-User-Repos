@@ -1,0 +1,14 @@
+<transitionSet xmlns:android="http://schemas.android.com/apk/res/android">
+    <changeBounds>
+        <targets>
+            <target android:targetId="@id/circle" />
+            <target android:targetId="@id/circle_transit" />
+        </targets>
+    </changeBounds>
+    <changeImageTransform>
+        <targets>
+            <target android:targetId="@id/circle" />
+            <target android:targetId="@id/circle_transit" />
+        </targets>
+    </changeImageTransform>
+</transitionSet>
