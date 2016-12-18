@@ -1,4 +1,4 @@
-            package com.example.lenovo.boxme;
+            package com.example.lenovo.boxme.Model;
 
             import android.media.Image;
             import android.widget.ImageView;

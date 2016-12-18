@@ -1,4 +1,4 @@
-package com.example.lenovo.boxme;
+package com.example.lenovo.boxme.Utils;
 
 import android.app.Application;
 import android.text.TextUtils;

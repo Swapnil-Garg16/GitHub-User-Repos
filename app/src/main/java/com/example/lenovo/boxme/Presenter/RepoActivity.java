@@ -1,15 +1,9 @@
-            package com.example.lenovo.boxme;
+            package com.example.lenovo.boxme.Presenter;
 
             import android.app.ActivityOptions;
             import android.app.ProgressDialog;
             import android.content.Intent;
-            import android.graphics.PorterDuff;
-            import android.graphics.drawable.Drawable;
             import android.os.Bundle;
-            import android.support.design.widget.FloatingActionButton;
-            import android.support.design.widget.Snackbar;
-            import android.support.v4.app.ActivityOptionsCompat;
-            import android.support.v4.content.ContextCompat;
             import android.support.v4.view.ViewCompat;
             import android.support.v7.app.AppCompatActivity;
             import android.support.v7.widget.DefaultItemAnimator;
@@ -25,6 +19,11 @@
             import com.android.volley.VolleyError;
             import com.android.volley.VolleyLog;
             import com.android.volley.toolbox.JsonArrayRequest;
+            import com.example.lenovo.boxme.Adapter.RepoAdapter;
+            import com.example.lenovo.boxme.Utils.AppController;
+            import com.example.lenovo.boxme.Model.RepoDesc;
+            import com.example.lenovo.boxme.Model.RepoList;
+            import com.example.lenovo.boxme.R;
 
             import org.json.JSONArray;
             import org.json.JSONException;

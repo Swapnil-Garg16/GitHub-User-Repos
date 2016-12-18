@@ -1,25 +1,14 @@
-package com.example.lenovo.boxme;
+package com.example.lenovo.boxme.Presenter;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import static com.example.lenovo.boxme.RepoActivity.imageUrl;
+import com.example.lenovo.boxme.Model.RepoDesc;
+import com.example.lenovo.boxme.R;
 
 public class RepoDetailsActivity extends AppCompatActivity {
 
